@@ -41,6 +41,7 @@ myPeer.on('open', (userId) => {
 
 function addVideoStream(video, camera) {
     video.srcObject = camera
+    video.setAttribute('playsinline')
     video.addEventListener('loadedmetadata', () => video.play())
     mainEl.append(video)
 }
