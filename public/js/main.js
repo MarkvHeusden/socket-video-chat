@@ -4,6 +4,7 @@ const myPeer = new Peer(undefined, {
     host: '0.peerjs.com',
     port: '443',
 })
+const roomId = window.location.pathname.replace(/\//, '')
 const mainEl = document.querySelector('main')
 const myVideo = document.createElement('video')
 myVideo.muted = true
@@ -39,13 +40,6 @@ myPeer.on('open', (userId) => {
     socket.emit('join-room', roomId, userId)
 })
 
-function addVideoStream(video, camera) {
-    video.srcObject = camera
-    video.setAttribute('playsinline', '')
-    video.addEventListener('loadedmetadata', () => video.play())
-    mainEl.append(video)
-}
-
 function connectToNewUser(userId, camera) {
     const call = myPeer.call(userId, camera)
     const video = document.createElement('video')
@@ -56,4 +50,11 @@ function connectToNewUser(userId, camera) {
 
     peers[userId] = call
     console.log(peers)
+}
+
+function addVideoStream(video, camera) {
+    video.srcObject = camera
+    video.setAttribute('playsinline', '')
+    video.addEventListener('loadedmetadata', () => video.play())
+    mainEl.append(video)
 }

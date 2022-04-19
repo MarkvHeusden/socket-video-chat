@@ -1,12 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
-	</head>
-	<body>
-		<h1>Chat appje</h1>
-	</body>
+<html lang="nl">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Chat appje</h1>
+        <form action="/join-room" method="POST">
+            <label for="room-id">Join een meeting</label>
+            <input name="roomId" required id="room-id" placeholder="Meeting ID" type="text" />
+            <button type="submit">Neem deel</button>
+        </form>
+        <a href="/<%= randomId %> ">Maak nieuwe meeting aan</a>
+    </body>
 </html>

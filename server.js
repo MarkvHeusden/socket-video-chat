@@ -8,14 +8,20 @@ const port = process.env.PORT || 3001
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 app.use(enforce.HTTPS({ trustProtoHeader: true }))
 
 app.get('/', (req, res) => {
-    res.redirect(`/${uuidV4()}`)
+    res.render('index', { randomId: uuidV4() })
 })
 
 app.get('/:room', (req, res) => {
     res.render('room', { roomId: req.params.room })
+})
+
+app.post('/join-room', (req, res) => {
+    res.redirect(`/${req.body.roomId}`)
 })
 
 io.on('connection', (socket) => {
@@ -30,5 +36,5 @@ io.on('connection', (socket) => {
 })
 
 server.listen(port, () => {
-    console.log('http://localhost:' + port)
+    console.log(`http://localhost:${port}`)
 })
