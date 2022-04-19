@@ -1,4 +1,4 @@
-const socket = io(window.location.href)
+const socket = io(window.location.host)
 const myPeer = new Peer(undefined, {
     secure: true,
     host: '0.peerjs.com',
